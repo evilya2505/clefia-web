@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300&display=swap");
+
+.input {
+  font-weight: 300;
+  font-family: Arial;
+  font-size: 15px;
+
+  background-color: transparent;
+  border: 1px solid white;
+  width: 300px;
+  color: white;
+  padding: 10px 5px;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.error {
+  margin-top: 5px;
+  width: 100%;
+  text-align: left;
+
+  font-weight: 300;
+  font-family: "DM Sans";
+}

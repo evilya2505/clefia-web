@@ -1,28 +1,22 @@
 import React from "react";
 import checkbox from "./checkbox.module.css";
+import { UseFormRegister } from "react-hook-form";
 
 interface CheckboxProps {
   label: string;
-  name: string;
+  id: string;
   isChecked: boolean;
-  handleCheckboxesChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  register: UseFormRegister<any>;
 }
 
-function Checkbox({
-  label,
-  name,
-  isChecked,
-  handleCheckboxesChange,
-}: CheckboxProps) {
+function Checkbox({ label, id, isChecked, register }: CheckboxProps) {
   return (
     <div className={checkbox.checkboxContainer}>
       <input
         className={checkbox.checkbox}
         type="checkbox"
-        id={name}
-        name={name}
-        checked={isChecked}
-        onChange={handleCheckboxesChange}
+        id={id}
+        {...register(id)}
       />
       <span
         className={`${checkbox.customCheckbox} ${

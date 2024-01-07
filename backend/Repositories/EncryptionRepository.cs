@@ -1,12 +1,12 @@
 public class EncryptionRepository
 {
-    public Response Encrypt(string input, string key)
+    public Response Encrypt(bool isTextHex, bool isKeyHex, string input, string key)
     {
-        return CLEFIACipherTest.ReturnEnctyptionResponse(key, input);
+        return CLEFIACipherTest.ReturnEnctyptionResponse(isTextHex, isKeyHex, key, input);
     }
 
-    public Response Decrypt(string input, string key)
+    public Response Decrypt(bool isTextHex, bool isKeyHex, string input, string key)
     {
-        return CLEFIACipherTest.ReturnDecryptedResult(key, input);
+        return CLEFIACipherTest.ReturnDecryptedResult(isTextHex, isKeyHex, key, input);
     }
 }

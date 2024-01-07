@@ -1,7 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { ResultType, InputFormValues } from "../../types/types";
+import { ResultType, InputFormValues, EncryptionType } from "../../types/types";
 
 export interface TEncryptionListState {
+  mode: EncryptionType;
   requestData: InputFormValues | null;
   result: ResultType | null;
   request: boolean;
@@ -9,6 +10,7 @@ export interface TEncryptionListState {
 }
 
 export const initialState: TEncryptionListState = {
+  mode: "ENC",
   requestData: null,
   result: null,
   request: false,
@@ -19,6 +21,12 @@ const encryptionSlice = createSlice({
   name: "encryption",
   initialState,
   reducers: {
+    setMode(
+      state: TEncryptionListState,
+      action: PayloadAction<EncryptionType>
+    ) {
+      state.mode = action.payload;
+    },
     requestSuccess(
       state: TEncryptionListState,
       action: PayloadAction<ResultType>
@@ -37,7 +45,7 @@ const encryptionSlice = createSlice({
     },
   },
 });
-export const { request, requestSuccess, requestFailed } =
+export const { setMode, request, requestSuccess, requestFailed } =
   encryptionSlice.actions;
 
 export default encryptionSlice.reducer;

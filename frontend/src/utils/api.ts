@@ -1,4 +1,4 @@
-import { InputFormValues, ResultType } from "../types/types";
+import { RequestValues, ResultType } from "../types/types";
 
 class MainApi {
   private _baseUrl: string;
@@ -17,7 +17,7 @@ class MainApi {
     }
   }
 
-  request(data: InputFormValues): Promise<ResultType> {
+  request(data: RequestValues): Promise<ResultType> {
     return fetch(`${this._baseUrl}`, {
       method: "POST",
       headers: {

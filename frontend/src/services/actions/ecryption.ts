@@ -1,16 +1,22 @@
 import { AppDispatch } from "../store";
-import { request, requestFailed, requestSuccess } from "../reducers/encryption";
+import {
+  request,
+  requestFailed,
+  requestSuccess,
+  setMode,
+} from "../reducers/encryption";
 import mainApi from "../../utils/api";
-import { InputFormValues } from "../../types/types";
+import { RequestValues } from "../../types/types";
 
-export const encryptDecrypt = (requestData: InputFormValues) => {
+export const encryptDecrypt = (requestData: RequestValues) => {
   return function (dispatch: AppDispatch) {
     dispatch(request());
 
     mainApi
       .request(requestData)
       .then((data) => {
-        console.log(data);
+        console.log(requestData.type);
+        if (requestData.type !== undefined) dispatch(setMode(requestData.type));
         dispatch(requestSuccess(data));
       })
       .catch((err) => {

@@ -479,11 +479,17 @@ public static class CLEFIACipherTest
         return cipherText;
     }
 
-    public static Response ReturnEnctyptionResponse(string key, string text)
+    public static Response ReturnEnctyptionResponse(bool isTextHex, bool isKeyHex, string key, string text)
     {
         response = new Response();
 
-        CLEFIACipher(key, text, 18);
+        string keyString = key;
+        string textString = text;
+
+        if (!isTextHex) textString = StringToHex(text);
+        if (!isKeyHex) keyString = StringToHex(key);
+
+        CLEFIACipher(keyString, textString, 18);
         return response;
     }
 
@@ -563,11 +569,17 @@ public static class CLEFIACipherTest
         return input;
     }
 
-    public static Response ReturnDecryptedResult(string key, string text)
+    public static Response ReturnDecryptedResult(bool isTextHex, bool isKeyHex, string key, string text)
     {
         response = new Response();
 
-        InverseCLEFIACipher(key, text, 18);
+        string keyString = key;
+        string textString = text;
+
+        if (!isTextHex) textString = StringToHex(text);
+        if (!isKeyHex) keyString = StringToHex(key);
+
+        InverseCLEFIACipher(keyString, textString, 18);
 
         return response;
     }

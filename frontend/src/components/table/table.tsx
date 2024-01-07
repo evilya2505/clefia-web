@@ -3,13 +3,14 @@ import table from "./table.module.css";
 import { DirectionType, RoundType } from "../../types/types";
 import leftArrow from "../../images/right-arrow (2).png";
 import rightArrow from "../../images/right-arrow (1).png";
-import { FORWARD, BACKWARD } from "../../constants/constants";
+import { FORWARD, BACKWARD, ENCRYPTION_MODE } from "../../constants/constants";
 import { useSelector } from "../../services/hooks";
 
 function Table() {
   const [shownRounds, setShownRounds] = React.useState<any[]>([]);
   const [page, setPage] = React.useState<number>(0);
   const result = useSelector((state) => state.encryption.result);
+  const mode = useSelector((state) => state.encryption.mode);
 
   React.useEffect(() => {
     let tempArray: any[] = [];
@@ -74,7 +75,9 @@ function Table() {
         <table className={table.table}>
           <tbody>
             <tr>
-              <td colSpan={2}>plain text</td>
+              <td colSpan={2}>
+                {mode === ENCRYPTION_MODE ? "plain text" : "cipher text"}
+              </td>
               <td colSpan={2}>{result?.plainText}</td>
             </tr>
             <tr>
@@ -153,7 +156,9 @@ function Table() {
                 <td colSpan={2}>{result?.afterFinalWhitening}</td>
               </tr>
               <tr>
-                <td colSpan={2}>cipher text</td>
+                <td colSpan={2}>
+                  {mode === ENCRYPTION_MODE ? "cipher text" : "plain text"}
+                </td>
                 <td colSpan={2}>{result?.cipherText}</td>
               </tr>
             </tbody>

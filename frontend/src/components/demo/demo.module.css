@@ -2,24 +2,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,600&display=swap");
 .section {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   max-width: 1400px;
   margin: 0 auto;
-  padding: 15px;
+  padding: 45px 15px 15px;
   box-sizing: border-box;
 }
 
 .form {
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .fieldset {
-  border: 1px solid red;
+  /* border: 1px solid red; */
+  border: none;
   display: flex;
   column-gap: 15px;
   width: 100%;
   box-sizing: border-box;
-  padding: 15px 15px 0 15px;
+  /* padding: 15px 15px 0 15px; */
 }
 
 .label {
@@ -58,7 +59,7 @@
 }
 
 .button {
-  margin: auto 0;
+  align-self: center;
   border: none;
   background-color: white;
   font-weight: 700;
@@ -68,6 +69,10 @@
   padding: 6px 30px;
   cursor: pointer;
   transition: opacity 300ms, transform 300ms;
+}
+
+.buttonError {
+  margin-bottom: 20px;
 }
 
 .button:hover {
@@ -93,6 +98,7 @@
   font-family: "DM Sans";
   font-size: 16px;
   text-align: left;
+  text-transform: uppercase;
 }
 
 .resultText {
