@@ -11,7 +11,7 @@ function Table() {
   const [page, setPage] = React.useState<number>(0);
   const result = useSelector((state) => state.encryption.result);
   const mode = useSelector((state) => state.encryption.mode);
-
+  const [size, setSize] = React.useState({ width: 0, height: 0 });
   React.useEffect(() => {
     let tempArray: any[] = [];
     let newShownRounds: any[][] = [];
@@ -31,6 +31,18 @@ function Table() {
 
     setShownRounds(newShownRounds);
   }, [result]);
+
+  React.useEffect(() => {
+    const resize = () => {
+      console.log(window.innerWidth, window.innerHeight);
+      setSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", resize);
+  }, []);
 
   function onPageChange(direction: DirectionType) {
     switch (direction) {
@@ -59,16 +71,19 @@ function Table() {
         >
           <img src={leftArrow} alt="left arrow icon" className={table.image} />
         </button>
-        <p>
-          Rounds&nbsp;
-          {shownRounds.length > 0 &&
-            page !== 0 &&
-            shownRounds[page - 1][0].roundNumber}
-          &nbsp;-&nbsp;
-          {shownRounds.length > 0 &&
-            page !== 0 &&
-            shownRounds[page - 1][shownRounds[page - 1].length - 1].roundNumber}
-        </p>
+        {size.width > 730 && (
+          <p>
+            Rounds&nbsp;
+            {shownRounds.length > 0 &&
+              page !== 0 &&
+              shownRounds[page - 1][0].roundNumber}
+            &nbsp;-&nbsp;
+            {shownRounds.length > 0 &&
+              page !== 0 &&
+              shownRounds[page - 1][shownRounds[page - 1].length - 1]
+                .roundNumber}
+          </p>
+        )}
       </div>
 
       <div className={table.tables}>
@@ -181,16 +196,19 @@ function Table() {
             className={table.image}
           />
         </button>
-        <p>
-          Rounds&nbsp;
-          {shownRounds.length > 0 &&
-            page !== shownRounds.length - 1 &&
-            shownRounds[page + 1][0].roundNumber}
-          &nbsp;-&nbsp;
-          {shownRounds.length > 0 &&
-            page !== shownRounds.length - 1 &&
-            shownRounds[page + 1][shownRounds[page + 1].length - 1].roundNumber}
-        </p>
+        {size.width > 730 && (
+          <p>
+            Rounds&nbsp;
+            {shownRounds.length > 0 &&
+              page !== shownRounds.length - 1 &&
+              shownRounds[page + 1][0].roundNumber}
+            &nbsp;-&nbsp;
+            {shownRounds.length > 0 &&
+              page !== shownRounds.length - 1 &&
+              shownRounds[page + 1][shownRounds[page + 1].length - 1]
+                .roundNumber}
+          </p>
+        )}
       </div>
     </section>
   );
